@@ -13,18 +13,14 @@ plugins {
 }
 
 javadoc {
-    // Set the title of the Javadoc
-    title = 'dbHelper javadoc'
-    
-    // Set the destination directory for the Javadoc output
+    title = 'dbHelper Javadoc'
     destinationDir = file("${buildDir}/docs/javadoc")
-    
-    // Configure Javadoc options
     options {
-        // Show both public and protected members
-        showFromProtected()
-        
-        // Add any additional options here
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+        author true
+        version true
+        links 'https://docs.oracle.com/javase/8/docs/api/'
         addStringOption('Xdoclint:none', '-quiet')
     }
 }

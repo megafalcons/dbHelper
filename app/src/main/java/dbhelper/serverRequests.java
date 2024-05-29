@@ -29,7 +29,7 @@ public class serverRequests {
      * sends login request to server
      * @param username username
      * @param password password
-     * @return
+     * @return status of the request
      */
     public Boolean loginUser(String username, String password){
         try{
