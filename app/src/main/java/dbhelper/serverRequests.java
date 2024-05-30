@@ -24,7 +24,7 @@ import dbhelper.guiStuff.SimpleCookieJar;
  */
 public class serverRequests {
     
-    private String reqs = "http://34.16.12.139:8080";
+    private String reqs = "http://23.251.157.212:8080";
     private OkHttpClient client = new OkHttpClient().newBuilder().cookieJar(new SimpleCookieJar()).build();
 
     /**
