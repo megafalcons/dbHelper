@@ -22,7 +22,10 @@ class updateThread implements Runnable {
     public updateThread(homeScreen home){
         h = home;
     }
-
+    @SuppressWarnings("deprecation")
+    public void stop(){
+        prgmThread.stop();
+    }
     /**
      * starts auction update thread
      */

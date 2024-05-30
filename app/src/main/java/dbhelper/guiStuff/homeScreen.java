@@ -574,6 +574,7 @@ public class homeScreen extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
         win.logout();
+        
     }
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
         win.switchToSettings();

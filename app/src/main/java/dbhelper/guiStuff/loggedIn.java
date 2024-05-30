@@ -24,6 +24,7 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
     private String sound = "boom.wav";
     private boolean isSound = true;
     private boolean logginout = false;
+    private updateThread u;
 
     /**
      * starts the api spam thread
@@ -31,7 +32,7 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
     public void startProgramThread(){
         programThread = new Thread(this);
         programThread.start();
-        updateThread u = new updateThread(h);
+        u = new updateThread(h);
         u.startProgramThread();
     }
 
@@ -103,13 +104,17 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
      */
     @SuppressWarnings("deprecation")
     public void forcelogout(){
+        System.out.println("wts ss");
         LoginJFrame l = new LoginJFrame();
-        programThread.stop();
+        
         l.setVisible(true);
         l.pack();
         l.setLocationRelativeTo(null);
         l.setResizable(false);
+        u.stop();
+        programThread.stop();
         this.dispose();
+        
     }
 
     /**
@@ -180,7 +185,9 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
                 h.updateKeyAmount();
                 sr.addList(result);
                 if(logginout){
+                    System.out.println("omg wts");
                     forcelogout();
+                    //return;
                 }
             }
             //System.outprintln("can this work plz im tired its 1am");
