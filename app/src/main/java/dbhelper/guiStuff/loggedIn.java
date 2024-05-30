@@ -23,6 +23,7 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
     private CardLayout cardLayout;
     private String sound = "boom.wav";
     private boolean isSound = true;
+    private boolean logginout = false;
 
     /**
      * starts the api spam thread
@@ -30,6 +31,8 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
     public void startProgramThread(){
         programThread = new Thread(this);
         programThread.start();
+        updateThread u = new updateThread(h);
+        u.startProgramThread();
     }
 
     /**
@@ -90,10 +93,16 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
     }
 
     /**
+     * logs out after completing cycle
+     */
+    public void logout(){
+        logginout = true;
+    }
+    /**
      * closes this JFrame and starts login JFrame
      */
     @SuppressWarnings("deprecation")
-    public void logout(){
+    public void forcelogout(){
         LoginJFrame l = new LoginJFrame();
         programThread.stop();
         l.setVisible(true);
@@ -124,8 +133,6 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
     public void run() {
         //double drawInterval = 7000000000L;
         //double nextDrawTime = System.nanoTime() + drawInterval;
-        updateThread u = new updateThread(h);
-        u.startProgramThread();
         while(programThread != null){
             ArrayList<String> keys = sr.getKeys();
             ArrayList<String> list = sr.getList();
@@ -171,6 +178,9 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
             h.updateTokens();
             h.updateKeyAmount();
             sr.addList(result);
+            if(logginout){
+                forcelogout();
+            }
             //System.outprintln("can this work plz im tired its 1am");
         }
     }

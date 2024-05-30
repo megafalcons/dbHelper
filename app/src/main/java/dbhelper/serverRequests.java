@@ -24,7 +24,7 @@ import dbhelper.guiStuff.SimpleCookieJar;
  */
 public class serverRequests {
     
-    private String reqs = "http://34.16.12.139:8080/";
+    private String reqs = "http://34.16.12.139:8080";
     private OkHttpClient client = new OkHttpClient().newBuilder().cookieJar(new SimpleCookieJar()).build();
 
     /**
@@ -37,7 +37,7 @@ public class serverRequests {
         try{
             RequestBody body = new FormBody.Builder().add("username", username).add("password", password).build();
             Request request = new Request.Builder()
-                .url(reqs + "login")
+                .url(reqs + "/login")
                 //.method("POST", body)
                 .post(body)
                 .build();
@@ -401,8 +401,9 @@ public class serverRequests {
                 .build();
             Response response = client.newCall(request).execute();
             //System.out.println("wow" + response.body().string() + " " + response.code());
+            boolean res = response.body().string().equals("true");
             response.close();
-            return response.body().string().equals("true");
+            return res;
             //System.out.println("wow" + response.body().string() + " " + response.code());
         } catch (Exception e) {
             e.printStackTrace();

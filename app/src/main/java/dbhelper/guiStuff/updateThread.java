@@ -42,7 +42,7 @@ class updateThread implements Runnable {
             try {
                 Thread.sleep(15000);
             } catch (Exception e) {
-                // TODO: handle exception
+                e.printStackTrace();
             }
         }
     }
