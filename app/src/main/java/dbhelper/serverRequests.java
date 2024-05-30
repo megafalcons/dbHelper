@@ -24,7 +24,7 @@ import dbhelper.guiStuff.SimpleCookieJar;
  */
 public class serverRequests {
     
-
+    private String reqs = "http://34.16.12.139:8080/";
     private OkHttpClient client = new OkHttpClient().newBuilder().cookieJar(new SimpleCookieJar()).build();
 
     /**
@@ -37,7 +37,7 @@ public class serverRequests {
         try{
             RequestBody body = new FormBody.Builder().add("username", username).add("password", password).build();
             Request request = new Request.Builder()
-                .url("http://localhost:8080/login")
+                .url(reqs + "login")
                 //.method("POST", body)
                 .post(body)
                 .build();
@@ -72,7 +72,7 @@ public class serverRequests {
             MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(obj.toJSONString(), JSON);
             Request request = new Request.Builder()
-                .url("http://localhost:8080/register")
+                .url(reqs + "/register")
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
@@ -99,7 +99,7 @@ public class serverRequests {
             MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(obj.toJSONString(), JSON);
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/changePass")
+                .url(reqs + "/user/changePass")
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
@@ -125,7 +125,7 @@ public class serverRequests {
             MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(obj.toJSONString(), JSON);
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/addKeys")
+                .url(reqs + "/user/addKeys")
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
@@ -151,7 +151,7 @@ public class serverRequests {
             MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(obj.toJSONString(), JSON);
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/placeBid")
+                .url(reqs + "/user/placeBid")
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
@@ -173,7 +173,7 @@ public class serverRequests {
         try{
             
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/auctions")
+                .url(reqs + "/user/auctions")
                 .get()
                 .build();
             Response response = client.newCall(request).execute();
@@ -210,7 +210,7 @@ public class serverRequests {
         try{
             
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/oldAuctions")
+                .url(reqs + "/user/oldAuctions")
                 .get()
                 .build();
             Response response = client.newCall(request).execute();
@@ -246,7 +246,7 @@ public class serverRequests {
         try{
             
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/purchases")
+                .url(reqs + "/user/purchases")
                 .get()
                 .build();
             Response response = client.newCall(request).execute();
@@ -282,7 +282,7 @@ public class serverRequests {
         try{
             
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/tokenCount")
+                .url(reqs + "/user/tokenCount")
                 .get()
                 .build();
             Response response = client.newCall(request).execute();
@@ -314,7 +314,7 @@ public class serverRequests {
         try{
             
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/sendKeys")
+                .url(reqs + "/user/sendKeys")
                 .get()
                 .build();
             Response response = client.newCall(request).execute();
@@ -351,7 +351,7 @@ public class serverRequests {
         try{
             
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/recieveList")
+                .url(reqs + "/user/recieveList")
                 .get()
                 .build();
             Response response = client.newCall(request).execute();
@@ -396,7 +396,7 @@ public class serverRequests {
             MediaType JSON = MediaType.get("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(obj.toJSONString(), JSON);
             Request request = new Request.Builder()
-                .url("http://localhost:8080/user/addList")
+                .url(reqs + "/user/addList")
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
