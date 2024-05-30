@@ -147,39 +147,41 @@ public class loggedIn extends javax.swing.JFrame implements Runnable {
                     e.printStackTrace();
                 }
             }
+            else{
             //System.outprintln(keys.size() + " " + list.size());
-            if(keys.size() > 0){
-                for(int i = 0; i < keys.size(); i++){
-                    ArrayList<String> snippet = new ArrayList<String>();
-                    for(int j = 0; j < 60; j++){
-                        snippet.add(list.get(i * 60 + j));  
+                if(keys.size() > 0){
+                    for(int i = 0; i < keys.size(); i++){
+                        ArrayList<String> snippet = new ArrayList<String>();
+                        for(int j = 0; j < 60; j++){
+                            snippet.add(list.get(i * 60 + j));  
+                        }
+                        Thread t = new Thread(new ScanThread(keys.get(i), snippet, result));
+                        t.run();
                     }
-                    Thread t = new Thread(new ScanThread(keys.get(i), snippet, result));
-                    t.run();
                 }
-            }
-            int buh = 0;
-            int updateCounter = 0;
-            while(result.size() != keys.size() * 60 && buh < 40){
-                buh++;
-                updateCounter++;
-                if(updateCounter == 2){
-                    //System.out.println("THIS IS AN UPDATE PELASE HELP");
-                    //h.updateAuctions();
-                    updateCounter = 0;
+                int buh = 0;
+                int updateCounter = 0;
+                while(result.size() != keys.size() * 60 && buh < 40){
+                    buh++;
+                    updateCounter++;
+                    if(updateCounter == 2){
+                        //System.out.println("THIS IS AN UPDATE PELASE HELP");
+                        //h.updateAuctions();
+                        updateCounter = 0;
+                    }
+                    try{
+                        Thread.sleep(7000);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                        
+                    }
                 }
-                try{
-                    Thread.sleep(7000);
-                }catch(Exception e){
-                    e.printStackTrace();
-                    
+                h.updateTokens();
+                h.updateKeyAmount();
+                sr.addList(result);
+                if(logginout){
+                    forcelogout();
                 }
-            }
-            h.updateTokens();
-            h.updateKeyAmount();
-            sr.addList(result);
-            if(logginout){
-                forcelogout();
             }
             //System.outprintln("can this work plz im tired its 1am");
         }
