@@ -10,7 +10,25 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
     id 'java'
+    id 'edu.sc.seis.launch4j' version '2.4.9'
 }
+
+archivesBaseName = 'dbhelper'
+mainClassName = 'dbhelper.App'
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'dbhelper.App'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = 'exclude'
+}
+
+
+
 
 javadoc {
     title = 'dbHelper Javadoc'

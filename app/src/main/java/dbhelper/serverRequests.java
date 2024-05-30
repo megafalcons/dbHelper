@@ -15,6 +15,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;   
 import org.json.simple.parser.*;
 
+import dbhelper.guiStuff.SimpleCookieJar;
+
 /**
  * a bunch of commands towards server
  * @author James Dai
@@ -101,8 +103,9 @@ public class serverRequests {
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
+            Boolean result = response.body().string().equals("true");
             response.close();
-            return response.body().string().equals("true");
+            return result;
             //System.out.println("wow" + response.body().string() + " " + response.code());
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,8 +129,9 @@ public class serverRequests {
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
+            Boolean result = response.body().string().equals("true");
             response.close();
-            return response.body().string().equals("true");
+            return result;
             //System.out.println("wow" + response.body().string() + " " + response.code());
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,8 +155,9 @@ public class serverRequests {
                 .post(body)
                 .build();
             Response response = client.newCall(request).execute();
+            Boolean result = response.body().string().equals("true");
             response.close();
-            return response.body().string().equals("true");
+            return result;
             //System.out.println("wow" + response.body().string() + " " + response.code());
         } catch (Exception e) {
             e.printStackTrace();
